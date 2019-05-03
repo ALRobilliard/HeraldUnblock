@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "NZHerald Unblock",
+  "description": "Unblock premium content on nzherald.co.nz",
+  "version": "1.0",
+  "content_scripts":
+  [
+    {
+      "matches": ["*://*.nzherald.co.nz/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "browser_action": {
+    "default_icon": "./nzheraldunblock_extension.png"
+  }
+}
