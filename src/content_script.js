@@ -1,10 +1,4 @@
 window.addEventListener('load', function() {
-  // Remove gradient blur.
-  const articleBlur = document.querySelector('#article-content.premium-content:before');
-  if (articleBlur) {
-    articleBlur.style.backgroundImage = 'none';
-  }
-
   // Hide advertisement popup.
   const articleOffer = document.querySelector('.article-offer');
   if (articleOffer) {
@@ -17,9 +11,20 @@ window.addEventListener('load', function() {
     mainSection.style.height = 'unset'
   }
 
-  // Show all hidden <p> tags.
-  document.querySelectorAll('.paywall')
+  // Show all hidden elements.
+  document.querySelectorAll('.QUnWjUZkTonf')
   .forEach(function(el) { 
-    el.style.display = 'block'
+    el.classList.remove('QUnWjUZkTonf');
   });
+
+  // Override Stylesheet to remove blur.
+  const css = '#article-content.premium-content:before { background-image: none !important }',
+    style = document.createElement('style');
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+  document.getElementsByTagName('head')[0].appendChild(style);
 })
