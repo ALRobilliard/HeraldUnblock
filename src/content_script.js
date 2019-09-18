@@ -1,30 +1,24 @@
 window.addEventListener('load', function() {
-  // Hide advertisement popup.
-  const articleOffer = document.querySelector('.article-offer');
-  if (articleOffer) {
-    articleOffer.style.display = 'none';
+  const contentContainer = document.getElementById('article-content');
+  if (contentContainer && contentContainer.classList.contains('premium-content')) {
+    contentContainer.style.display = 'none';
+
+    // hide offer banner
+    const offerElems = document.querySelectorAll('.article-offer');
+    offerElems.forEach(element => {
+      element.style.display = 'none';
+    });
+
+    // rebuild paragraphs
+    const paragraphs = document.querySelectorAll('#article-content p');
+    const newContentContainer = document.createElement('div');
+    paragraphs.forEach(paragraph => {
+      let newPara = document.createElement('p');
+      newPara.innerText = paragraph.innerText;
+      newContentContainer.appendChild(newPara);
+    });
+
+    const articleBody = document.getElementById('article-body');
+    articleBody.append(newContentContainer);
   }
-
-  // Remove max-height.
-  const mainSection = document.querySelector('#main');
-  if (mainSection) {
-    mainSection.style.height = 'unset'
-  }
-
-  // Show all hidden elements.
-  document.querySelectorAll('.QUnWjUZkTonf')
-  .forEach(function(el) { 
-    el.classList.remove('QUnWjUZkTonf');
-  });
-
-  // Override Stylesheet to remove blur.
-  const css = '#article-content.premium-content:before { background-image: none !important }',
-    style = document.createElement('style');
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-  document.getElementsByTagName('head')[0].appendChild(style);
-})
+});
