@@ -3,12 +3,6 @@ window.addEventListener('load', function() {
   if (contentContainer && contentContainer.classList.contains('premium-content')) {
     contentContainer.style.display = 'none';
 
-    // hide offer banner
-    const offerElems = document.querySelectorAll('.article-offer');
-    offerElems.forEach(element => {
-      element.style.display = 'none';
-    });
-
     // rebuild all elements
     const childElems = document.querySelector('#article-content').children;
     const newContentContainer = document.createElement('div');
@@ -36,5 +30,13 @@ window.addEventListener('load', function() {
 
     const articleBody = document.getElementById('article-body');
     articleBody.append(newContentContainer);
+
+    // hide offer banner
+    setTimeout(() => {
+      const offerElems = document.querySelectorAll('.article-offer');
+      offerElems.forEach(element => {
+        element.style.display = 'none';
+      });
+    }, 500);
   }
 });
