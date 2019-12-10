@@ -14,7 +14,8 @@ window.addEventListener('load', function() {
     const newContentContainer = document.createElement('div');
     paragraphs.forEach(paragraph => {
       let newPara = document.createElement('p');
-      newPara.innerText = paragraph.innerText;
+      newPara.innerHTML = paragraph.innerHTML.replace(/style=".*?"/g, '').replace(/class=".*?"/g, '');
+      debugger;
       newContentContainer.appendChild(newPara);
     });
 
