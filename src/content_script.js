@@ -9,14 +9,17 @@ window.addEventListener('load', function() {
       element.style.display = 'none';
     });
 
-    // rebuild paragraphs
-    const paragraphs = document.querySelectorAll('#article-content p');
+    // rebuild all elements
+    const childElems = document.querySelector('#article-content').children;
     const newContentContainer = document.createElement('div');
-    paragraphs.forEach(paragraph => {
-      let newPara = document.createElement('p');
-      newPara.innerHTML = paragraph.innerHTML.replace(/style=".*?"/g, '').replace(/class=".*?"/g, '');
-      newContentContainer.appendChild(newPara);
-    });
+
+    for(let element of childElems) {
+      if (element.nodeName.toLowerCase() == "p"){
+        let newPara = document.createElement('p');
+        newPara.innerHTML = element.innerHTML.replace(/style=".*?"/g, '').replace(/class=".*?"/g, '');
+        newContentContainer.appendChild(newPara);
+      }
+    };
 
     const articleBody = document.getElementById('article-body');
     articleBody.append(newContentContainer);
