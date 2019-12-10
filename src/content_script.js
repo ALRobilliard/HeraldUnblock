@@ -15,7 +15,6 @@ window.addEventListener('load', function() {
     paragraphs.forEach(paragraph => {
       let newPara = document.createElement('p');
       newPara.innerHTML = paragraph.innerHTML.replace(/style=".*?"/g, '').replace(/class=".*?"/g, '');
-      debugger;
       newContentContainer.appendChild(newPara);
     });
 
