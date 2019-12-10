@@ -14,10 +14,23 @@ window.addEventListener('load', function() {
     const newContentContainer = document.createElement('div');
 
     for(let element of childElems) {
-      if (element.nodeName.toLowerCase() == "p"){
-        let newPara = document.createElement('p');
-        newPara.innerHTML = element.innerHTML.replace(/style=".*?"/g, '').replace(/class=".*?"/g, '');
-        newContentContainer.appendChild(newPara);
+      switch (element.nodeName.toLowerCase()) {
+        case 'meta':
+          newContentContainer.appendChild(element);
+        case 'p':
+          let newPara = document.createElement('p');
+          newPara.innerHTML = element.innerHTML.replace(/style=".*?"/g, '').replace(/class=".*?"/g, '');
+          newContentContainer.appendChild(newPara);
+          break;
+        case 'div':
+          // include only image divs
+          if (element.classList.contains('element-image')) {
+            let newDiv = document.createElement('div');
+            newDiv.classList.add('element', 'element-image');
+            newDiv.innerHTML = element.innerHTML;
+            newContentContainer.appendChild(newDiv);
+            break;
+          }
       }
     };
 
