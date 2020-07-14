@@ -12,7 +12,7 @@
       "all_frames": true
     }
   ],
-  "browser_action": {
-    "default_icon": "./nzheraldunblock_extension.png"
+  "icons": {
+    "48": "icon_48x48.png"
   }
 }
