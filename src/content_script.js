@@ -33,12 +33,19 @@ window.addEventListener("load", function () {
 
     contentContainer.parentElement.append(newContentContainer);
 
-    // hide offer banner
+    // hide premium elements.
+    const possibleSelectors = [
+      ".article-offer",
+      ".commenting__count",
+      "#commenting-widget",
+    ];
     setTimeout(() => {
-      const offerElems = document.querySelectorAll(".article-offer");
-      offerElems.forEach((element) => {
-        element.style.display = "none";
-      });
+      for (const selector of possibleSelectors) {
+        const offerElems = document.querySelectorAll(selector);
+        offerElems.forEach((element) => {
+          element.style.display = "none";
+        });
+      }
     }, 500);
   }
 });
