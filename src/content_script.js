@@ -1,4 +1,13 @@
 window.addEventListener("load", function () {
+  console.log('here');
+  const host = this.document.location.host;
+  if (host.indexOf('nzherald') > -1)
+    handleHerald();
+  else if (host.indexOf('thepost') > -1)
+    handleThePost();
+});
+
+function handleHerald() {
   const containerSelector = getContainerSelector();
   const contentContainer = document.querySelector(containerSelector);
   if (contentContainer) {
@@ -48,7 +57,18 @@ window.addEventListener("load", function () {
       }
     }, 500);
   }
-});
+}
+
+function handleThePost() {
+  setTimeout(() => {
+    // remove top elem gradient
+    document.getElementById('subscription-paywall-gradient').classList.remove('piano-gradient--active');
+    // removePaywallBanner
+    const paywallBanner = document.getElementById('subscription-article-paywall');
+    paywallBanner.classList.remove('piano-container--active');
+    paywallBanner.style.display = 'none'
+  }, 500);
+}
 
 /**
  * Returns the query selector param for the content container.
